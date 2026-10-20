@@ -1,13 +1,13 @@
 test_that("test get_haven_read_function_by_extension returns the good method", {
-  file <- system.file("examples", "iris.dta", package = "haven")
+  file <- system.file("examples","iris.dta", package = "haven")
   fun <- get_haven_read_function_for_file(file)
   expect_s3_class(fun(file), "tbl")
 
-  file <- system.file("examples", "iris.sas7bdat", package = "haven")
+  file <- system.file("examples","iris.sas7bdat", package = "haven")
   fun <- get_haven_read_function_for_file(file)
   expect_s3_class(fun(file), "tbl")
 
-  file <- system.file("examples", "iris.sav", package = "haven")
+  file <- system.file("examples","iris.sav", package = "haven")
   fun <- get_haven_read_function_for_file(file)
   expect_s3_class(fun(file), "tbl")
 })
@@ -26,7 +26,7 @@ test_that("tests get_haven_read_function_by_extension fails when needed", {
 })
 
 test_that("test get_lines_for_memory return the good number of lines", {
-  file <- system.file("examples", "iris.dta", package = "haven")
+  file <- system.file("examples","iris.dta", package = "haven")
   read_method <- get_haven_read_function_for_file(file)
   data <- read_method(file, n_max = Inf)
 
@@ -46,3 +46,5 @@ test_that("test is_remote works", {
   expect_false(is_remote("c://my_url/"))
   expect_false(is_remote("/my_url/"))
 })
+
+

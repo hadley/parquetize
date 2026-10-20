@@ -61,18 +61,14 @@ haven_read_function_by_extension <- list(
 get_haven_read_function_for_file <- function(file_name) {
   ext <- tools::file_ext(file_name)
   if (ext == "") {
-    cli_abort(
-      "Be careful, unable to find a read method for \"{file_name}\", it has no extension",
-      class = "parquetize_bad_argument"
-    )
+    cli_abort("Be careful, unable to find a read method for \"{file_name}\", it has no extension",
+              class = "parquetize_bad_argument")
   }
 
   fun <- haven_read_function_by_extension[[ext]]
   if (is.null(fun)) {
-    cli_abort(
-      "Be careful, no method to read \"{file_name}\" file",
-      class = "parquetize_bad_argument"
-    )
+    cli_abort("Be careful, no method to read \"{file_name}\" file",
+              class = "parquetize_bad_argument")
   }
 
   fun
@@ -121,11 +117,7 @@ get_col_types <- function(ds) {
   fields <- ds$schema$fields
 
   tibble(
-    name = unlist(lapply(fields, function(x) {
-      x$name
-    })),
-    type = unlist(lapply(fields, function(x) {
-      x$type$name
-    }))
+    name = unlist(lapply(fields, function(x) { x$name })),
+    type = unlist(lapply(fields, function(x) { x$type$name }))
   )
 }
